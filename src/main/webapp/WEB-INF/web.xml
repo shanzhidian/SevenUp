@@ -5,7 +5,7 @@
          http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 	     id="WebApp_ID" version="2.5">
 
-	<display-name>7Up Restful Web Application</display-name>
+	<display-name>SevenUp Restful Web Application</display-name>
 	<description>Developed By org.7up</description>
 
 	<!-- - Location of the XML file that defines the root application context. - Applied by ContextLoaderListener. -->
@@ -20,7 +20,7 @@
 
 	<!-- - Servlet that dispatches request to registered handlers (Controller implementations). -->
 	<servlet>
-		<servlet-name>7Up</servlet-name>
+		<servlet-name>SevenUp</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
@@ -30,7 +30,7 @@
 	</servlet>
 
 	<servlet-mapping>
-		<servlet-name>7Up</servlet-name>
+		<servlet-name>SevenUp</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
     
@@ -43,7 +43,7 @@
 
 	<filter-mapping>
 		<filter-name>httpMethodFilter</filter-name>
-		<servlet-name>7Up</servlet-name>
+		<servlet-name>SevenUp</servlet-name>
 	</filter-mapping>
 
 	<!-- used to provide the ability to enter Chinese characters inside the 
