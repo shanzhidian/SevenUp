@@ -43,10 +43,6 @@
 		<jodatime-jsptags.version>1.1.1</jodatime-jsptags.version>
 		<jodatime.version>2.3</jodatime.version>
 		<jadira-usertype-core.version>3.1.0.CR8</jadira-usertype-core.version>
-		<!-- Web dependencies -->
-		<webjars-bootstrap.version>3.0.2</webjars-bootstrap.version>
-		<webjars-jquery-ui.version>1.10.2</webjars-jquery-ui.version>
-		<webjars-jquery.version>2.0.3-1</webjars-jquery.version>
 		
 		<mysql.version>5.1.22</mysql.version>
 
