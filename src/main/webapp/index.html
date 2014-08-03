@@ -40,7 +40,8 @@
 				url : actionurl,
 				type : 'post',
 				dataType : 'xml',
-				data : "<account><accountName>testseven</accountName><password>nonumber1989</password></account>",
+				accept : 'application/json',
+				data : "<user><userName>testseven</userName><password>nonumber1989</password></user>",
 			    contentType: 'application/xml',
 			    mimeType: 'application/xml',
 			    success: function(data) { 
