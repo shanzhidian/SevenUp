@@ -27,6 +27,7 @@ public class LoginController {
        return new ResponseEntity<User>(user,HttpStatus.OK);
     }
     
+    
     @RequestMapping(value="/cities", method=RequestMethod.POST)
     @ResponseBody
     public String[] cities(HttpServletResponse response){
