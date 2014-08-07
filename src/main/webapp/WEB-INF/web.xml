@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	     xmlns="http://java.sun.com/xml/ns/javaee"
-	     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
-         http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
-	     id="WebApp_ID" version="2.5">
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+       version="3.0">
 
 	<display-name>SevenUp Restful Web Application</display-name>
 	<description>Developed By org.7up</description>
@@ -45,9 +45,20 @@
 		<filter-name>httpMethodFilter</filter-name>
 		<servlet-name>SevenUp</servlet-name>
 	</filter-mapping>
-
-	<!-- used to provide the ability to enter Chinese characters inside the 
-		Owner Form -->
+	
+	<!-- this is filter is used for cross domain access -->
+    <filter>
+    <filter-name>CORSFilter</filter-name>
+    <filter-class>
+       org.sevenup.common.filters.CORSFilter
+    </filter-class>
+    </filter>
+	<filter-mapping>
+	    <filter-name>CORSFilter</filter-name>
+	    <url-pattern>/*</url-pattern>
+	</filter-mapping>
+		
+	<!-- used to provide the ability to enter Chinese characters inside the Owner Form -->
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
