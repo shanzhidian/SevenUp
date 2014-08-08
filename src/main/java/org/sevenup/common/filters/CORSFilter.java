@@ -10,6 +10,12 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Component;
 
+/**
+ * Filter for CORS
+ * about CORS details go further research
+ * @author steven.xu
+ *
+ */
 @Component
 public class CORSFilter implements Filter {
 
@@ -19,7 +25,8 @@ public class CORSFilter implements Filter {
 					theResponse.setHeader("Access-Control-Allow-Origin", "*");
 					theResponse.setHeader("Access-Control-Allow-Methods","POST, GET, OPTIONS, DELETE");
 					theResponse.setHeader("Access-Control-Max-Age", "3600");
-					theResponse.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+					//this is important for CROS 
+					theResponse.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 					chain.doFilter(request, response);
 				}
 
