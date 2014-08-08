@@ -8,28 +8,35 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.springframework.hateoas.ResourceSupport;
-@XmlRootElement(name="User")
-@XmlAccessorType (XmlAccessType.FIELD)
-public class User extends ResourceSupport implements Serializable {
+
+/**
+ * Account Class used in the rest perspective Developer can control the fields
+ * 
+ * @author steven.xu
+ *
+ */
+@XmlRootElement(name = "Account")
+@XmlAccessorType(XmlAccessType.FIELD)
+public class Account extends ResourceSupport implements Serializable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2643083900558470878L;
+	private static final long serialVersionUID = -7110628902672169040L;
 
-	@XmlElement(required=true)
-	private String userName;
-	@XmlElement(required=true)
+	@XmlElement(required = true)
+	private String accountName;
+	@XmlElement(required = true)
 	private String email;
-	@XmlElement(required=true)
+	@XmlElement(required = true)
 	private String password;
 
-	public String getUserName() {
-		return userName;
+	public String getAccountName() {
+		return accountName;
 	}
 
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 	public String getEmail() {

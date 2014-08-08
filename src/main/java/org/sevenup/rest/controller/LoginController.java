@@ -4,11 +4,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import org.sevenup.rest.domain.User;
-import org.springframework.http.HttpEntity;
+import org.sevenup.rest.domain.Account;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,13 +18,21 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Produces(MediaType.APPLICATION_JSON)
 public class LoginController {
     @RequestMapping(method = RequestMethod.POST, value = "login")
-    public ResponseEntity<User> Login(@RequestBody User user ) {
-    	System.out.println(user.getEmail());
-    	System.out.println(user.getPassword());
-    	user.setEmail("test@gmail.com");
-    	user.setPassword("testpassword");
-    	user.setUserName("testUserName");
-       return new ResponseEntity<User>(user,HttpStatus.OK);
+    public ResponseEntity<Account> Login(@RequestBody Account account ) {
+    	System.out.println(account.getEmail());
+    	System.out.println(account.getPassword());
+    	account.setEmail("test@gmail.com");
+    	account.setPassword("testpassword");
+    	account.setAccountName("testUserName");
+       return new ResponseEntity<Account>(account,HttpStatus.OK);
+    }
+    @RequestMapping(method = RequestMethod.POST, value = "login2/{userName}")
+    public ResponseEntity<Account> Login2(@PathVariable("userName") String userName) {
+    	Account account = new Account();
+    	account.setEmail("test@gmail.com");
+    	account.setPassword("testpassword");
+    	account.setAccountName(userName);
+       return new ResponseEntity<Account>(account,HttpStatus.OK);
     }
     
     @RequestMapping(value="/cities", method=RequestMethod.POST)
