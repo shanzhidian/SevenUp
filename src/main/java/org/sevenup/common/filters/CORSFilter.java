@@ -20,7 +20,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class CORSFilter implements Filter {
-    @Override
 	public void doFilter(ServletRequest request, ServletResponse response,FilterChain chain) 
 		   throws IOException, ServletException {
 					HttpServletResponse theResponse = (HttpServletResponse) response;
@@ -32,12 +31,11 @@ public class CORSFilter implements Filter {
 					theResponse.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 					chain.doFilter(request, response);
 				}
-    @Override
 	public void init(FilterConfig filterConfig) {
     	
     }
-    @Override
 	public void destroy() {
     	
     }
+	
 }
