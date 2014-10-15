@@ -1,5 +1,10 @@
 package org.sevenup.core.domain;
 
+import java.util.Date;
+
+import org.sevenup.core.events.account.AccountDetails;
+import org.springframework.beans.BeanUtils;
+
 /**
  * 
  * @author steven.xu
@@ -54,4 +59,5 @@ public class User {
 		this.description = description;
 	}
 
+	
 }

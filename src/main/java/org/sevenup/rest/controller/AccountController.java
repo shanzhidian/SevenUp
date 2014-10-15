@@ -7,7 +7,11 @@ import java.util.UUID;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.sevenup.core.events.account.AccountCreatedEvent;
+import org.sevenup.core.events.account.CreateAccountEvent;
+import org.sevenup.core.service.AccountService;
 import org.sevenup.rest.domain.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +28,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 @RequestMapping("/accounts")
 @Produces(MediaType.APPLICATION_JSON)
 public class AccountController {
+	@Autowired
+	private AccountService accountService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
@@ -74,5 +80,20 @@ public class AccountController {
 		System.out.println("userName: " + account.getAccountName());
 		System.out.println("password: " + account.getPassword());
 		return new ResponseEntity<Account>(account, HttpStatus.OK);
+	}
+	
+	@RequestMapping(method = RequestMethod.POST, value = "add")
+	public ResponseEntity<Account> add(@RequestBody Account account,UriComponentsBuilder builder) {
+		
+		 AccountCreatedEvent accountCreated = accountService.createAccount(new CreateAccountEvent(account.toAccountDetails()));
+
+	        Account newAccount = Account.fromAccountDetails(accountCreated.getAccountDetails());
+
+	        HttpHeaders headers = new HttpHeaders();
+	        headers.setLocation(
+	                builder.path("/sevenup/accounts/{id}")
+	                        .buildAndExpand(accountCreated.getNewAccountKey().toString()).toUri());
+	        
+	        return new ResponseEntity<Account>(newAccount, headers, HttpStatus.CREATED);
 	}
 }

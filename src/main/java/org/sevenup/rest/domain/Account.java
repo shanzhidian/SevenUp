@@ -1,12 +1,16 @@
 package org.sevenup.rest.domain;
 
 import java.io.Serializable;
+import java.util.Date;
+import java.util.UUID;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.sevenup.core.events.account.AccountDetails;
+import org.springframework.beans.BeanUtils;
 import org.springframework.hateoas.ResourceSupport;
 
 /**
@@ -55,4 +59,39 @@ public class Account extends ResourceSupport implements Serializable {
 		this.password = password;
 	}
 
+	//added by rqf
+		private final Date dateTimeOfRegister;
+		private UUID key;
+		
+		public Account(){
+			dateTimeOfRegister = null;
+		}
+		public Account(final Date dateTimeOfRegister){
+			this.key = UUID.randomUUID();  //需要新主键才对
+			this.dateTimeOfRegister = dateTimeOfRegister;
+		}
+		
+		public static Account fromAccountDetails(AccountDetails userDetails){
+			Account account = new Account(userDetails.getDateTimeOfRegister());
+			BeanUtils.copyProperties(userDetails, account);
+			return account;
+		}
+		
+		public AccountDetails toAccountDetails(){
+			AccountDetails accountDetails = new AccountDetails();
+			BeanUtils.copyProperties(this, accountDetails);
+			return accountDetails;
+		}
+
+		public UUID getKey() {
+			return key;
+		}
+
+		public void setKey(UUID key) {
+			this.key = key;
+		}
+
+		public Date getDateTimeOfRegister() {
+			return dateTimeOfRegister;
+		}
 }
